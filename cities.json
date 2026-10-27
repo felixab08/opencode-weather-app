@@ -1,0 +1,26 @@
+{
+  "cities": [
+    {
+      "name": "Lima",
+      "latitude": -12.04318,
+      "longitude": -77.02824
+    },
+    {
+      "name": "La Paz",
+      "latitude": 24.14231,
+      "longitude": -110.31316
+    },
+    {
+      "name": "Bogotá",
+      "latitude": 4.60971,
+      "longitude": -74.08175
+    },
+    {
+      "name": "Ayacucho",
+      "latitude": -13.1638,
+      "longitude": -74.22345
+    }
+  ],
+  "defaultCity": null,
+  "unit": "fahrenheit"
+}
