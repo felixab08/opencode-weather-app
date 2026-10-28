@@ -21,6 +21,6 @@
       "longitude": -74.22345
     }
   ],
-  "defaultCity": null,
-  "unit": "fahrenheit"
+  "defaultCity": "Ayacucho",
+  "unit": "celsius"
 }

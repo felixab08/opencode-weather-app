@@ -8,6 +8,7 @@ menu and local persistence in `cities.json`.
 
 - `index.ts` — entry point (root), starts `runCLI()`
 - `src/cli.ts` — menu UI, input loop, option dispatch
+- `src/colors.ts` — ANSI helpers (cyan menu, yellow temp, green ok, red error); honors `NO_COLOR` / `FORCE_COLOR`
 - `src/weather.ts` — business logic: format temperature, fetch weather for one or all cities
 - `src/geo.ts` — OpenMeteo geocoding (city name → lat/lon)
 - `src/forecast.ts` — OpenMeteo forecast (lat/lon → temperature)
