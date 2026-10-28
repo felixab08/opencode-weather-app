@@ -33,10 +33,15 @@ Two-step HTTP, no API key required:
 1. `https://geocoding-api.open-meteo.com/v1/search?name=<city>&count=1&language=es&format=json`
 2. `https://api.open-meteo.com/v1/forecast?latitude=...&longitude=...&current=temperature_2m`
 
+7-day forecast (options 6/7): same forecast API with
+`daily=temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=auto`
+(weather codes mapped in `src/forecast.ts`, `describeWeatherCode`).
+
 ## Menu (español)
 
 1. Clima de ciudad default · 2. Clima de todas las ciudades · 3. Buscar y agregar ciudad
-4. Eliminar ciudad · 5. Establecer ciudad default · 8. Ajustes (°C/°F) · 9. Salir
+4. Eliminar ciudad · 5. Establecer ciudad default · 6. Pronóstico 7 días ·
+7. Pronóstico 7 días (todas) · 8. Ajustes (°C/°F) · 9. Salir
 
 ## Conventions / gotchas
 

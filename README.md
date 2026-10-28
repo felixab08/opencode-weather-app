@@ -42,8 +42,18 @@ Esta es la apariencia que deseamos crear
   3. Buscar y agregar ciudad
   4. Eliminar ciudad
   5. Establecer ciudad default
+  6. Pronóstico 7 días
+  7. Pronóstico 7 días (todas)
   8. Ajustes (°C)
   9. Salir
 ════════════════════════════════════════
   Selecciona una opción: 5
+```
+
+## Pronóstico de 7 días
+
+Las opciones 6 y 7 usan la llamada diaria de OpenMeteo (sin API key):
+
+```
+https://api.open-meteo.com/v1/forecast?latitude=45.41117&longitude=-75.69812&daily=temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=auto
 ```

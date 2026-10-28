@@ -8,7 +8,7 @@ import {
   setUnit,
 } from "./store.ts"
 import { geocodeCity } from "./geo.ts"
-import { getWeatherForCity, getWeatherForAllCities } from "./weather.ts"
+import { getWeatherForCity, getWeatherForAllCities, getWeeklyForecastForCity, getWeeklyForecastForAllCities } from "./weather.ts"
 import { bold, cyan, green, red } from "./colors.ts"
 import type { City } from "./store.ts"
 
@@ -32,6 +32,8 @@ export function showMenu(): void {
   console.log(cyan("  3. Buscar y agregar ciudad"))
   console.log(cyan("  4. Eliminar ciudad"))
   console.log(cyan("  5. Establecer ciudad default"))
+  console.log(cyan("  6. Pronóstico 7 días"))
+  console.log(cyan("  7. Pronóstico 7 días (todas)"))
   console.log(cyan("  8. Ajustes (°C)"))
   console.log(cyan("  9. Salir"))
   console.log(cyan("════════════════════════════════════════════"))
@@ -116,6 +118,39 @@ export async function runCLI(): Promise<void> {
           } else {
             console.log(red("Opción inválida."))
           }
+        }
+        break
+      }
+      case "6": {
+        let city = await getDefaultCity()
+        if (!city) {
+          const cities = await listCities()
+          if (cities.length === 0) {
+            console.log(red("No hay ciudades registradas."))
+            break
+          }
+          console.log(cyan("\nNo hay ciudad default. Ciudades registradas:"))
+          cities.forEach((c, i) => console.log(`  ${i + 1}. ${c.name}`))
+          const idx = (await ask("Selecciona el número de la ciudad: ")).trim()
+          const n = parseInt(idx, 10)
+          const picked = !isNaN(n) && n >= 1 && n <= cities.length ? cities[n - 1] : undefined
+          if (!picked) {
+            console.log(red("Opción inválida."))
+            break
+          }
+          city = picked
+        }
+        const result = await getWeeklyForecastForCity(city)
+        console.log("\n" + result)
+        break
+      }
+      case "7": {
+        const cities = await listCities()
+        if (cities.length === 0) {
+          console.log(red("No hay ciudades registradas."))
+        } else {
+          const result = await getWeeklyForecastForAllCities(cities)
+          console.log("\n" + result)
         }
         break
       }
