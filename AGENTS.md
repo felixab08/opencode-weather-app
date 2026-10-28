@@ -6,20 +6,21 @@ menu and local persistence in `cities.json`.
 
 ## Modules
 
-- `index.ts` — entry point (root), starts `runCLI()`
-- `src/cli.ts` — menu UI, input loop, option dispatch
-- `src/colors.ts` — ANSI helpers (cyan menu, yellow temp, green ok, red error); honors `NO_COLOR` / `FORCE_COLOR`
-- `src/weather.ts` — business logic: format temperature, fetch weather for one or all cities
-- `src/geo.ts` — OpenMeteo geocoding (city name → lat/lon)
-- `src/forecast.ts` — OpenMeteo forecast (lat/lon → temperature)
-- `src/store.ts` — persistence: `cities.json` (cities, default city, temperature unit)
+- `src/index.ts` — entry point (inside `src/`), starts `runCLI()`
+- `src/presentation/` — CLI layer: `menu.ts` (menu render + option dispatch), `input.ts` (`ask`, `askCity`), `output.ts` (print helpers: messages, city lists, weather/forecast blocks)
+- `src/actions/` — user-facing use cases: `getWeather.ts`, `getWeeklyForecast.ts`, `addCity.ts` (`addCityByName`), `removeCity.ts`, `setDefaultCity.ts`, `listCities.ts` (thin re-exports of storage)
+- `src/storage/` — persistence in `cities.json`: `citiesStorage.ts` (file I/O primitives + cities + default city), `settingsStorage.ts` (temperature unit)
+- `src/api/` — OpenMeteo HTTP integration: `geocoding.ts` (city → lat/lon), `weather.ts` (current temperature + daily forecast)
+- `src/types/` — shared TypeScript contracts: `City.ts`, `Weather.ts` (`Unit`, `WeatherNow`, `DailyForecast`, …), `MenuOption.ts`
+- `src/utils/` — `format.ts` (temperature/date/forecast-block formatting, `describeWeatherCode`), `constants.ts` (`WEATHER_CODES`), `colors.ts` (ANSI helpers)
 
 ## Commands
 
 - `bun install` — install deps (`bun.lock` committed)
-- `bun index.ts` — run the app
-- `bun run typecheck` — runs `bun check` (only script in `package.json`)
-- `bun build index.ts --compile` — produce the executable binary (per README goal)
+- `bun src/index.ts` (or `bun run start`) — run the app
+- `bun run dev` — run with `--watch`
+- `bun run typecheck` — runs `bun check` (script in `package.json`)
+- `bun build --compile src/index.ts --outfile weather` (or `bun run build`) — produce the executable binary (per README goal)
 
 ## TypeScript config (`tsconfig.json`)
 
@@ -35,7 +36,7 @@ Two-step HTTP, no API key required:
 
 7-day forecast (options 6/7): same forecast API with
 `daily=temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=auto`
-(weather codes mapped in `src/forecast.ts`, `describeWeatherCode`).
+(weather codes mapped in `src/utils/format.ts` via `describeWeatherCode`, table in `src/utils/constants.ts`).
 
 ## Menu (español)
 

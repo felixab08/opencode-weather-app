@@ -1,18 +1,13 @@
-export type Unit = "celsius" | "fahrenheit"
+import type { City } from "../types/City.ts"
+import type { Unit } from "../types/Weather.ts"
 
-export interface City {
-  name: string
-  latitude: number
-  longitude: number
-}
+const STORE_FILE = "cities.json"
 
 export interface Store {
   cities: City[]
   defaultCity: string | null
   unit: Unit
 }
-
-const STORE_FILE = "cities.json"
 
 function defaultStore(): Store {
   return { cities: [], defaultCity: null, unit: "celsius" }
@@ -81,15 +76,4 @@ export async function getDefaultCity(): Promise<City | null> {
     store.cities.find((c) => c.name.toLowerCase() === store.defaultCity!.toLowerCase()) ??
     null
   )
-}
-
-export async function getUnit(): Promise<Unit> {
-  const store = await loadStore()
-  return store.unit
-}
-
-export async function setUnit(unit: Unit): Promise<void> {
-  const store = await loadStore()
-  store.unit = unit
-  await saveStore(store)
 }

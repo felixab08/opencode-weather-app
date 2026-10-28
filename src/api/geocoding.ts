@@ -1,8 +1,4 @@
-export interface GeoResult {
-  name: string
-  latitude: number
-  longitude: number
-}
+import type { GeoResult } from "../types/Weather.ts"
 
 export async function geocodeCity(name: string): Promise<GeoResult | null> {
   try {

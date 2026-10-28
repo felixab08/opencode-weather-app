@@ -29,6 +29,18 @@ https://api.open-meteo.com/v1/forecast?latitude=45.41117&longitude=-75.69812&cur
 bun init
 ```
 
+### Ejecutar la app
+
+```bash
+bun src/index.ts
+```
+
+### Compilar el binario ejecutable
+
+```bash
+bun build --compile src/index.ts --outfile weather
+```
+
 ### Ejemplo del menú
 
 Esta es la apariencia que deseamos crear
