@@ -1,7 +1,12 @@
 import type { City } from "../types/City.ts"
 import type { Unit } from "../types/Weather.ts"
 
-const STORE_FILE = "cities.json"
+const DEFAULT_STORE_FILE = "cities.json"
+
+// Ruta del almacén, overridable para aislar los tests del cities.json real.
+function storeFile(): string {
+  return process.env.CITIES_FILE ?? DEFAULT_STORE_FILE
+}
 
 export interface Store {
   cities: City[]
@@ -15,7 +20,7 @@ function defaultStore(): Store {
 
 export async function loadStore(): Promise<Store> {
   try {
-    const text = await Bun.file(STORE_FILE).text()
+    const text = await Bun.file(storeFile()).text()
     const data = JSON.parse(text) as Partial<Store>
     return {
       cities: Array.isArray(data.cities) ? data.cities : [],
@@ -28,7 +33,7 @@ export async function loadStore(): Promise<Store> {
 }
 
 export async function saveStore(store: Store): Promise<void> {
-  await Bun.write(STORE_FILE, JSON.stringify(store, null, 2))
+  await Bun.write(storeFile(), JSON.stringify(store, null, 2))
 }
 
 export async function addCity(city: City): Promise<void> {

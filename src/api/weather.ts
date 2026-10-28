@@ -10,7 +10,7 @@ export async function getForecast(
     if (!res.ok) return null
     const data = (await res.json()) as { current?: { temperature_2m: number } } | null
     const current = data?.current
-    if (!current) return null
+    if (!current || typeof current.temperature_2m !== "number") return null
     return { temperature: current.temperature_2m }
   } catch {
     return null

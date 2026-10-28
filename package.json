@@ -8,7 +8,7 @@
     "start": "bun run src/index.ts",
     "dev": "bun run src/index.ts --watch",
     "test": "bun test",
-    "build": "bun build --compile src/index.ts --outfile weather"
+    "build": "bun test && bun run typecheck && bun build --compile src/index.ts --outfile weather"
   },
   "devDependencies": {
     "@types/bun": "latest"
