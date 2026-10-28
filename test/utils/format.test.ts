@@ -4,9 +4,9 @@ import {
   formatTemperature,
   formatWeeklyBlock,
   describeWeatherCode,
-} from "../src/utils/format.ts"
-import { UNKNOWN_WEATHER } from "../src/utils/constants.ts"
-import { stripAnsi } from "./helpers.ts"
+} from "../../src/utils/format.ts"
+import { UNKNOWN_WEATHER } from "../../src/utils/constants.ts"
+import { stripAnsi } from "../helpers.ts"
 
 describe("formatTemperature", () => {
   test("formatea en celsius con un decimal", () => {

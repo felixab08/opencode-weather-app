@@ -8,9 +8,9 @@ import {
   saveStore,
   setDefaultCity,
   type Store,
-} from "../src/storage/citiesStorage.ts"
-import { cleanupStore, useTempStore } from "./helpers.ts"
-import type { City } from "../src/types/City.ts"
+} from "../../src/storage/citiesStorage.ts"
+import { cleanupStore, useTempStore } from "../helpers.ts"
+import type { City } from "../../src/types/City.ts"
 
 let storeFile: string
 

@@ -1,22 +1,22 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test"
-import { addCityByName } from "../src/actions/addCity.ts"
-import { removeCity } from "../src/actions/removeCity.ts"
-import { setDefaultCity } from "../src/actions/setDefaultCity.ts"
-import { listCities } from "../src/actions/listCities.ts"
-import { getWeatherForAllCities, getWeatherForCity } from "../src/actions/getWeather.ts"
+import { addCityByName } from "../../src/actions/addCity.ts"
+import { removeCity } from "../../src/actions/removeCity.ts"
+import { setDefaultCity } from "../../src/actions/setDefaultCity.ts"
+import { listCities } from "../../src/actions/listCities.ts"
+import { getWeatherForAllCities, getWeatherForCity } from "../../src/actions/getWeather.ts"
 import {
   getWeeklyForecastForAllCities,
   getWeeklyForecastForCity,
-} from "../src/actions/getWeeklyForecast.ts"
-import { getDefaultCity } from "../src/storage/citiesStorage.ts"
+} from "../../src/actions/getWeeklyForecast.ts"
+import { getDefaultCity } from "../../src/storage/citiesStorage.ts"
 import {
   cleanupStore,
   installFetch,
   jsonResponse,
   restoreFetch,
   useTempStore,
-} from "./helpers.ts"
-import type { City } from "../src/types/City.ts"
+} from "../helpers.ts"
+import type { City } from "../../src/types/City.ts"
 
 let storeFile: string
 

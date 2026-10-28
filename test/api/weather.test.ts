@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test"
-import { getDailyForecast, getForecast } from "../src/api/weather.ts"
-import { installFetch, jsonResponse, restoreFetch } from "./helpers.ts"
+import { getDailyForecast, getForecast } from "../../src/api/weather.ts"
+import { installFetch, jsonResponse, restoreFetch } from "../helpers.ts"
 
 afterEach(() => {
   restoreFetch()

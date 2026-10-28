@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test"
-import { geocodeCity } from "../src/api/geocoding.ts"
-import { installFetch, jsonResponse, restoreFetch } from "./helpers.ts"
+import { geocodeCity } from "../../src/api/geocoding.ts"
+import { installFetch, jsonResponse, restoreFetch } from "../helpers.ts"
 
 afterEach(() => {
   restoreFetch()

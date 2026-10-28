@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test"
-import { getUnit, setUnit } from "../src/storage/settingsStorage.ts"
-import { addCity, loadStore } from "../src/storage/citiesStorage.ts"
-import { cleanupStore, useTempStore } from "./helpers.ts"
-import type { City } from "../src/types/City.ts"
+import { getUnit, setUnit } from "../../src/storage/settingsStorage.ts"
+import { addCity, loadStore } from "../../src/storage/citiesStorage.ts"
+import { cleanupStore, useTempStore } from "../helpers.ts"
+import type { City } from "../../src/types/City.ts"
 
 let storeFile: string
 
